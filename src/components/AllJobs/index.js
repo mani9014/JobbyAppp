@@ -1,9 +1,11 @@
+/* eslint-disable import/extensions */
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {AiOutlineSearch} from 'react-icons/ai'
-
+// eslint-disable-next-line import/extensions
 import Header from '../Header'
+// eslint-disable-next-line import/no-unresolved
 import JobItem from '../JobItem'
 import './index.css'
 
@@ -70,7 +72,7 @@ class AllJobs extends Component {
     radioInput: '',
     searchInput: '',
     apiStatus: apiStatusConstants.initial,
-    apiJobsStatus: apiJobsStatusConstants.inital,
+    apiJobsStatus: apiJobsStatusConstants.initial,
   }
 
   componentDidMount = () => {
@@ -81,6 +83,7 @@ class AllJobs extends Component {
   onGetProfileDetails = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
+    // eslint-disable-next-line no-unused-vars
     const {checkboxInputs, radioInput, searchInput} = this.state
     const profileApiUrl = 'https://apis.ccbp.in/profile'
     const optionsProfile = {
@@ -90,9 +93,10 @@ class AllJobs extends Component {
       method: 'GET',
     }
     const responseProfile = await fetch(profileApiUrl, optionsProfile)
+
     if (responseProfile.ok === true) {
-      const fetchedDataProfile = await responseProfile.json()
-      const updatedDataProfile = fetch.map(eachItem => ({
+      const fetchedDataProfile = [await responseProfile.json()]
+      const updatedDataProfile = fetchedDataProfile.map(eachItem => ({
         name: eachItem.profile_details.name,
         profileImageUrl: eachItem.profile_details.profile_image_url,
         shortBio: eachItem.profile_details.short_bio,
@@ -100,7 +104,7 @@ class AllJobs extends Component {
       this.setState({
         profileData: updatedDataProfile,
         responseSuccess: true,
-        apiStatus: apiStatusConstants.failure,
+        apiStatus: apiStatusConstants.success,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
@@ -108,7 +112,7 @@ class AllJobs extends Component {
   }
 
   onGetJobDetails = async () => {
-    this.setState({apiStatus: apiJobsStatusConstants.inProgress})
+    this.setState({apiJobsStatus: apiJobsStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const {checkboxInputs, radioInput, searchInput} = this.state
     const jobsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${checkboxInputs}&minimum_package=${radioInput}&search=${searchInput}`
@@ -136,7 +140,7 @@ class AllJobs extends Component {
         apiJobsStatus: apiJobsStatusConstants.success,
       })
     } else {
-      this.setState({apiStatus: apiJobsStatusConstants.failure})
+      this.setState({apiJobsStatus: apiJobsStatusConstants.failure})
     }
   }
 
@@ -161,6 +165,7 @@ class AllJobs extends Component {
         eachItem => eachItem !== event.target.id,
       )
       this.setState(
+        // eslint-disable-next-line no-unused-vars
         prevState => ({checkboxInputs: filteredData}),
         this.onGetJobDetails,
       )
@@ -173,7 +178,7 @@ class AllJobs extends Component {
       const {name, profileImageUrl, shortBio} = profileData[0]
       return (
         <div className="profile-container">
-          <img src={profileImageUrl} alt="profile" className="profile-icon" />
+          <img src={profileImageUrl} className="profile-icon" alt="profile" />
           <h1 className="profile-name">{name}</h1>
           <p className="profile-description">{shortBio}</p>
         </div>
@@ -199,13 +204,14 @@ class AllJobs extends Component {
   )
 
   renderLoadingView = () => (
-    <div className="loder-container" data-testid="loader">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
   onRenderProfileStatus = () => {
     const {apiStatus} = this.state
+
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.onGetProfileView()
@@ -224,7 +230,7 @@ class AllJobs extends Component {
 
   onGetJobsFailureView = () => (
     <div className="failure-img-button-container">
-      <img src={failureViewImg} alt="failure view" className="failure-img" />
+      <img className="failure-img" src={failureViewImg} alt="failure view" />
       <h1 className="failure-heading">Oops! Something Went Wrong</h1>
       <p className="failure-paragraph">
         we cannot seem to find the page you are looking for
@@ -247,12 +253,12 @@ class AllJobs extends Component {
     return noJobs ? (
       <div className="no-jobs-container">
         <img
+          className="no-jobs-img"
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
           alt="no jobs"
-          className="no-jobs-container"
         />
         <h1>No jobs found</h1>
-        <p>we could not find any jobs. Try other filters.</p>
+        <p>We could not find any jobs. Try other filters.</p>
       </div>
     ) : (
       <ul className="ul-job-items-container">
@@ -265,6 +271,7 @@ class AllJobs extends Component {
 
   onRenderJobsStatus = () => {
     const {apiJobsStatus} = this.state
+
     switch (apiJobsStatus) {
       case apiJobsStatusConstants.success:
         return this.onGetJobsView()
@@ -304,7 +311,7 @@ class AllJobs extends Component {
             id={eachItem.salaryRangeId}
             type="radio"
             name="option"
-            onChange={this.onGetRadioButtonsView}
+            onChange={this.onGetRadioOption}
           />
           <label className="label" htmlFor={eachItem.salaryRangeId}>
             {eachItem.label}
@@ -329,6 +336,7 @@ class AllJobs extends Component {
   }
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const {checkboxInputs, radioInput, searchInput} = this.state
     return (
       <>
@@ -346,8 +354,8 @@ class AllJobs extends Component {
           <div className="jobs-container">
             <div>
               <input
-                type="search"
                 className="search-input"
+                type="search"
                 value={searchInput}
                 placeholder="Search"
                 onChange={this.onGetSearchInput}
@@ -369,4 +377,5 @@ class AllJobs extends Component {
     )
   }
 }
+
 export default AllJobs

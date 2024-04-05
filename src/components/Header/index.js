@@ -11,8 +11,9 @@ const Header = props => {
   const onClickLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
-    history.replace('./login')
+    history.replace('/login')
   }
+
   return (
     <nav className="nav-header">
       <div className="nav-content">
@@ -24,6 +25,7 @@ const Header = props => {
               alt="website logo"
             />
           </Link>
+
           <ul className="nav-bar-mobile-icons-container">
             <li>
               <Link to="/">
@@ -46,6 +48,7 @@ const Header = props => {
             </li>
           </ul>
         </div>
+
         <div className="nav-bar-large-container">
           <Link to="/">
             <img
@@ -60,6 +63,7 @@ const Header = props => {
                 Home
               </Link>
             </li>
+
             <li className="nav-menu-item">
               <Link to="/jobs" className="nav-link">
                 Jobs
@@ -78,4 +82,5 @@ const Header = props => {
     </nav>
   )
 }
+
 export default withRouter(Header)

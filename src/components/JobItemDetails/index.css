@@ -1,4 +1,4 @@
-.jobs-item-details-container {
+.job-item-details-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@
   width: 250px;
   height: 200px;
 }
-@media screen and(min-width: 768px) {
+@media screen and (min-width: 768px) {
   .job-item-failure-img {
     width: 450px;
     height: 400px;
@@ -91,7 +91,7 @@
   margin-bottom: 25px;
   margin-top: 10px;
 }
-@media screen and(min-width: 768px) {
+@media screen and (min-width: 768px) {
   .job-item {
     padding: 45px;
   }
@@ -135,8 +135,10 @@
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
+
   font-family: 'Roboto';
 }
+
 .location-package-container {
   display: flex;
   flex-direction: row;
@@ -221,19 +223,28 @@
   line-height: 1.8;
   font-family: 'Roboto';
 }
+
 .similar-jobs-heading {
   color: #ffffff;
   font-family: 'Roboto';
   font-size: 28px;
   font-weight: 500;
-  margin: 0px;
+  margin: 0;
 }
+
+@media screen and (min-width: 768px) {
+  .similar-jobs-heading {
+    font-size: 32px;
+  }
+}
+
 .similar-jobs-list {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding-left: 0;
 }
+
 @media screen and (min-width: 768px) {
   .similar-jobs-list {
     display: flex;
@@ -253,6 +264,7 @@
   font-weight: bold;
   font-family: 'Roboto';
 }
+
 .life-at-company-description-image-container {
   display: flex;
   flex-direction: column;
@@ -266,7 +278,31 @@
 .life-at-company-image {
   width: 100%;
 }
+@media screen and (min-width: 768px) {
+  .life-at-company-description-image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .life-at-company-description {
+    font-size: 20px;
+    width: 65%;
+  }
+  .life-at-company-image {
+    width: 350px;
+    height: 260px;
+  }
+  .description-text {
+    font-size: 20px;
+  }
+}
 .skills-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-left: 0px;
+}
+.skills-item-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

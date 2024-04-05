@@ -1,5 +1,6 @@
 import {BsSearch} from 'react-icons/bs'
 
+// eslint-disable-next-line import/extensions
 import ProfileDetails from '../ProfileDetails'
 import './index.css'
 
@@ -15,6 +16,7 @@ const FiltersGroup = props => {
       getJobs()
     }
   }
+
   const renderSearchInput = () => {
     const {getJobs, searchInput} = props
     return (
@@ -29,7 +31,7 @@ const FiltersGroup = props => {
         />
         <button
           type="button"
-          id="searchButton"
+          data-testid="searchButton"
           className="search-button-container"
           onClick={getJobs}
         >
@@ -38,11 +40,12 @@ const FiltersGroup = props => {
       </div>
     )
   }
+
   const renderTypeOfEmployment = () => {
     const {employmentTypesList} = props
     return (
       <div className="employment-type-container">
-        <h1 className="employment-type-heading">Type of Employment</h1>
+        <h1 className="employment-type-heading"> Type of Employment</h1>
         <ul className="employee-type-list-container">
           {employmentTypesList.map(eachEmployeeType => {
             const {changeEmployeeList} = props
@@ -57,7 +60,7 @@ const FiltersGroup = props => {
               >
                 <input
                   type="checkbox"
-                  id={eachEmployeeType.employementTypeId}
+                  id={eachEmployeeType.employmentTypeId}
                   className="check-input"
                   value={eachEmployeeType.employmentTypeId}
                 />
@@ -74,6 +77,7 @@ const FiltersGroup = props => {
       </div>
     )
   }
+
   const renderSalaryRange = () => {
     const {salaryRangesList} = props
     return (
@@ -110,6 +114,7 @@ const FiltersGroup = props => {
       </div>
     )
   }
+
   return (
     <div className="filters-group-container">
       {renderSearchInput()}

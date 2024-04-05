@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {BsFillBriefcaseFill, BsStartFill} from 'react-icons/bs'
+import {BsFillBriefcaseFill, BsStarFill} from 'react-icons/bs'
 import {MdLocationOn} from 'react-icons/md'
 import './index.css'
 
@@ -28,8 +28,8 @@ const JobCard = props => {
             <div className="title-rating-container">
               <h1 className="title-heading">{title}</h1>
               <div className="rating-container">
-                <BsStartFill className="rating-icon" />
-                <p className="rating-heading">{location}</p>
+                <BsStarFill className="rating-icon" />
+                <p className="rating-heading">{rating}</p>
               </div>
             </div>
           </div>
